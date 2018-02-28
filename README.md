@@ -9,3 +9,7 @@
 * git status
 * git remote add origin https://github.com/patlii/cpp-for-CCF.git
 * git push origin master
+
+
+#How to use vim
+:sy on

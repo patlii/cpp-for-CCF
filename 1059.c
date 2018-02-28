@@ -14,11 +14,13 @@ int main()
   int total = atoi(p);
   while (p != NULL) {
     p = strtok(NULL, "+");
-    if (p != NULL)
+    if (p != NULL) {
       total += atoi(p);
+    }
   }
 
   printf("%d\n", total);
+
   return 0;
 }
 
