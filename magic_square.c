@@ -9,18 +9,18 @@ int main()
   int n;
   scanf("%d", &n);
 
-  int **arr = (int **)malloc(sizeof (int **) * n);
+  int **arr = (int **)malloc(sizeof (int **) * (n + 2));
   int i, j;
-  for (i = 0; i < n; ++i)
-    arr[i] = (int *)malloc(sizeof (int *) * n);
+  for (i = 0; i < n + 2; ++i)
+    arr[i] = (int *)malloc(sizeof (int *) * (n + 2));
 
   if (n % 2 == 1)
     print_odd(arr, n);
   else
     print_even(arr, n);
 
-  for (i = 0; i < n; ++i) {
-    for (j = 0; j < n; ++j) {
+  for (i = 1; i <= n; ++i) {
+    for (j = 1; j <= n; ++j) {
       printf("%3d ", arr[i][j]);
     }
     printf("\n");
@@ -33,22 +33,28 @@ void print_odd(int *arr[], int n)
 {
   int i, j, r;  
 
-  for (i = 0, j = n / 2, r = 1; r <= n * n; ++r) {
-    //printf("%d: %d/%d => ", r, i, j);
-    if (i < 0)
-      i = n - 1;
-    if (j < 0)
-      j = n - 1;
-    if (i > n - 1)
-      i = 0;
-    if (j > n - 1)
-      j = 0;
+  i = 1, j = (n + 1) / 2;
+  arr[i][j] = 1;
+  for (r = 2; r <= n * n; ++r) {
+    printf("%d: %d/%d:%d => ", r, i, j, arr[i-1][j+1]);
 
-    if (arr[i][j] != 0)
+    if (arr[i - 1][j + 1] > 0) {
       ++i;
+    }
+    else {
+      i--; j++;
+    }
 
-    //printf("%d/%d\n", i, j);
-    arr[i--][j++] = r;  
+    if (i < 1)
+      i = n;
+    if (j < 1)
+      j = n;
+    if (i > n)
+      i = 1;
+    if (j > n)
+      j = 1;
+    printf("%d/%d:%d\n", i, j, r);
+    arr[i][j] = r;  
   }
 }
 

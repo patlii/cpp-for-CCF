@@ -20,7 +20,7 @@ int main()
 {
   int n, m;
   scanf("%d %d", &n, &m);
-  volunteer *pv = (volunteer *)malloc(sizeof(pv) * n);
+  volunteer *pv = (volunteer *)malloc(sizeof(volunteer *) * n);
 
   m = floor(100.0 * DBL_EPSILON + m * 150.0 / 100.0);
   if (m > n)
